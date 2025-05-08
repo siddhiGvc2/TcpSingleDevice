@@ -63,7 +63,15 @@ export default function KwikpayBoards() {
 
   const [data,setData]=useState([])
 
-  const online = a => moment().diff(moment.utc((a.lastHeartBeatTime)), 'minute') < 10;
+  // const online = a => moment().diff(moment.utc((a.lastHeartBeatTime)), 'minute') < 10;
+
+  const online = a => {
+     
+      if (!a?.lastHeartBeatTime) return false; // Ensure valid timestamp
+      
+     
+      return moment().diff(moment.utc(a.lastHeartBeatTime), 'minute') < 10;
+    };
 
   useEffect(()=>{
     
@@ -115,7 +123,7 @@ export default function KwikpayBoards() {
         setData(filteredData);
         const formattedData = filteredData.map((option,i) => ({
           value: option.MacID,
-          label: option.MacID,
+          label: `${option.MacID} ${option.SNoutput}`,
           id:i
         }));
   

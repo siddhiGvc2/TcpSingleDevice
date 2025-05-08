@@ -251,8 +251,17 @@ const handleChange = () => {
 
   }
 
+  const diff =a=> moment().diff(moment.utc(a?.lastHeartBeatTime), "minute");
+
   const online = a => {
+   
     if (!a?.lastHeartBeatTime) return false; // Ensure valid timestamp
+    console.log(a.lastHeartBeatTime);
+     console.log("Current time (local):", moment().format());
+          console.log("Current time (UTC):", moment.utc().format());
+          console.log("Last Heartbeat (UTC):", moment.utc(a.lastHeartBeatTime).format());
+          console.log("Difference in minutes:", diff(a));
+          console.log("Online status:", diff(a) < 10);
     return moment().diff(moment.utc(a.lastHeartBeatTime), 'minute') < 10;
   };
   
