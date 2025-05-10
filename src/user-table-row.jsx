@@ -19,7 +19,7 @@ import Typography from '@mui/material/Typography';
 // import IconButton from '@mui/material/IconButton';
 
 import { SaveFaultReport } from './_mock/faultReportData';
-import {setL,sendD,sendV,askCA,askCC,askQR,setSN,askSIP,sendVS,sendCA,sendCC,sendQR,sendTV,sendFW,sendTC,askUrl,checkSN,sendSIP,sendIMG,sendPWD,setPair,sendHBT,askSSID,sendSSID,sendFota,sendPWD1,setErase,sendSSID1,askStatus,checkPair,sendLight,sendReset,checkErase,sendMessage,sendFotaUrl,sendPassThru,checkPassThru} from './_mock/macAddress';
+import {modeNone,modeTest1,modeTest2,modeTest3,setL,sendD,sendV,askCA,askCC,askQR,setSN,askSIP,sendVS,sendCA,sendCC,sendQR,sendTV,sendFW,sendTC,askUrl,checkSN,sendSIP,sendIMG,sendPWD,setPair,sendHBT,askSSID,sendSSID,sendFota,sendPWD1,setErase,sendSSID1,askStatus,checkPair,sendLight,sendReset,checkErase,sendMessage,sendFotaUrl,sendPassThru,checkPassThru} from './_mock/macAddress';
 
 import Label from './components/label';
 // import { Y } from 'dist/assets/index-8d78d312';
@@ -99,37 +99,35 @@ export default function UserTableRow({
   const prevCountRef = useRef(0); // Ref to persist count value
   const currCountRef = useRef(0); // Ref to persist count value
 
+  const [mode,setMode]=useState('');
 
-  // const [mode,setMode]=useState('');
-
-  const [disable]=useState(false);
-
-  // useEffect(()=>{
+  const [disable,setDisable]=useState(false);
+  useEffect(()=>{
     
-  //    if(!testMode && m.id>=0)
-  //     {
-  //       setDisable(false);
-  //       modeNone(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
-  //     }
-  //     else if(testMode && board===1 && m.id>=0) {
-  //       setDisable(true);
+     if(!testMode && m.id>=0)
+      {
+        setDisable(false);
+        modeNone(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
+      }
+      else if(testMode && board===1 && m.id>=0) {
+        setDisable(true);
      
-  //         modeTest1(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
+          modeTest1(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
       
-  //     }
-  //     else if(testMode && board===2 && m.id>=0)
-  //       {
-  //         setDisable(true);
+      }
+      else if(testMode && board===2 && m.id>=0)
+        {
+          setDisable(true);
      
-  //         modeTest2(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
-  //       }
-  //       else if(testMode && board===3 && m.id>=0)
-  //         {
-  //           setDisable(true);
+          modeTest2(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
+        }
+        else if(testMode && board===3 && m.id>=0)
+          {
+            setDisable(true);
        
-  //           modeTest3(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
-  //         }
-  // },[testMode,m.MacID, m.SocketNumber,m.id,board])
+            modeTest3(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
+          }
+  },[testMode,m.MacID, m.SocketNumber,m.id,board])
 
 
   const showAlertMessage = () => {

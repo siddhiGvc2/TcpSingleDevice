@@ -3,6 +3,11 @@ import moment from "moment";
 import Select from 'react-select';
 import {useState, useEffect} from 'react';
 
+import * as SwitchButtonModule from 'bootstrap-switch-button-react';
+import Switch from 'react-switch';
+
+
+
 import Card from '@mui/material/Card';
 // import Stack from '@mui/material/Stack';
 // import Table from '@mui/material/Table';
@@ -21,7 +26,7 @@ import Typography from '@mui/material/Typography';
 
 // import { emptyRows} from '../utils';
 
-import {AllMacAddress} from './_mock/macAddress';
+import {getTestMode, setTestMode,AllMacAddress} from './_mock/macAddress';
 // import Iconify from 'src/components/iconify';
 
 // import TableNoData from '../table-no-data';
@@ -47,6 +52,8 @@ export default function KwikpayBoards() {
   const [value2,setValue2]=useState({});
   const [value3,setValue3]=useState({});
 
+  const SwitchButton = SwitchButtonModule.SwitchButton;
+
   const [isChecked, setIsChecked] = useState(false);
 
   // const [page, setPage] = useState(0);
@@ -65,6 +72,9 @@ export default function KwikpayBoards() {
 
   // const online = a => moment().diff(moment.utc((a.lastHeartBeatTime)), 'minute') < 10;
 
+
+  
+
   const online = a => {
      
       if (!a?.lastHeartBeatTime) return false; // Ensure valid timestamp
@@ -74,7 +84,7 @@ export default function KwikpayBoards() {
     };
 
   useEffect(()=>{
-    
+    console.log('SwitchButton:', SwitchButton); // This should log a function or class
     AllMacAddress().then((res)=>{
 
       const filteredData=res.filter((elem)=> online(elem) );
@@ -153,7 +163,10 @@ export default function KwikpayBoards() {
         
       })
   
+         getTestMode().then((res)=>{
 
+      setIsChecked(res.testMode);
+    })
     },500)
 
 
@@ -238,7 +251,11 @@ export default function KwikpayBoards() {
       
     })
   };
-
+   
+   const handleChange = () => {
+    setTestMode();
+   
+  };
   
   // const handleChangePage = (event, newPage) => {
   //   setPage(newPage);
@@ -316,6 +333,39 @@ export default function KwikpayBoards() {
                         </div>
                     </div>
               </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontWeight: 'bold' }}>
+                {isChecked ? 'TEST MODE ON' : 'TEST MODE OFF'}
+              </span>
+              <Switch
+                onChange={handleChange}
+                checked={isChecked}
+                onColor="#28a745"
+                offColor="#dc3545"
+                uncheckedIcon={false}
+                checkedIcon={false}
+                height={20}
+                width={48}
+              />
+            </div>
+
+               {/* {selectedOption1.id>=0? <div className="row">
+                                      
+                                            <div className="col-12 sw-parent"> */}
+                                              
+                                                    {/* <SwitchButton
+                                                  
+                                                    checked={isChecked}
+                                                    onChange={handleChange}
+                                                    onlabel="TEST MODE ON"
+                                                    offlabel="TEST MODE OFF"
+                                                    onstyle='success'
+                                                    offstyle='danger'
+                                                    width={200}
+                                                /> */}
+                                            {/* </div>
+                                        </div>:''
+              } */}
           
               <div className='row'>
                  <div className="col-md-4">
