@@ -652,6 +652,8 @@ export const AllMacAddress=async()=> {
      
   
   }
+
+
   export const sendPWD1=(MacID,PWD1,port,name)=>{
     const obj={
       MacId:MacID,
@@ -661,6 +663,44 @@ export const AllMacAddress=async()=> {
   
     }
     fetch(`${API}/kwikpay/sendPWD1`,{
+      method:'POST',
+      headers:{
+        'Content-type':'application/json'
+      },
+      body:JSON.stringify(obj)
+    })
+     
+  
+  }
+
+   export const sendSSID2=(MacID,SSID2,port,name)=>{
+    const obj={
+      MacId:MacID,
+      SSID2,
+      socketNumber:port,
+      UserName:name
+  
+    }
+    fetch(`${API}/kwikpay/sendSSID2`,{
+      method:'POST',
+      headers:{
+        'Content-type':'application/json'
+      },
+      body:JSON.stringify(obj)
+    })
+     
+  
+  }
+
+   export const sendPWD2=(MacID,PWD2,port,name)=>{
+    const obj={
+      MacId:MacID,
+      PWD2,
+      socketNumber:port,
+      UserName:name
+  
+    }
+    fetch(`${API}/kwikpay/sendPWD2`,{
       method:'POST',
       headers:{
         'Content-type':'application/json'
