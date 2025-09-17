@@ -270,6 +270,18 @@ const handleChange = () => {
 
   return (
     <>
+    <style>
+      {`
+        .custom-btn {
+          transition: all 0.1s ease;
+        }
+        .custom-btn:active {
+          background-color: #0056b3 !important;
+          transform: scale(0.95);
+          box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+      `}
+    </style>
     {/* Alert popup ui */}
        <Stack spacing={2} sx={{ width: '100%'}}>
     
@@ -298,9 +310,9 @@ const handleChange = () => {
     </TableCell>
   
       </TableRow >
-        <div style={{border:"1px solid grey", overflow: "auto", height: "500px",paddingTop:"10px",paddingLeft:'2px'}}>
-       <b style={{fontSize: '1.20em',cursor:'pointer'}} >  SN:{m.SNoutput} MacID:{m.MacID} Socket:{m.SocketNumber}</b>
-         <table className="table" style={{fontSize:'14px'}}>
+       <div style={{border:"2px solid #ddd", borderRadius: "8px", overflow: "auto", height: "500px", padding: "15px", backgroundColor: "#f9f9f9", boxShadow: "0 2px 4px rgba(0,0,0,0.1)"}}>
+       <div style={{fontSize: '1.25em', fontWeight: 'bold', cursor:'pointer', backgroundColor: '#e3f2fd', padding: '10px', borderRadius: '5px', marginBottom: '10px', color: '#1976d2'}} >  SN:{m.SNoutput} MacID:{m.MacID} Socket:{m.SocketNumber}</div>
+         <table className="table table-striped" style={{fontSize:'14px', borderCollapse: 'separate', borderSpacing: '0', width: '100%'}}>
 
                             <tbody > 
                             {/* <tr>
@@ -327,8 +339,8 @@ const handleChange = () => {
                                             <div className="col-12 sw-parent">
                                                <h5>SEND DATA</h5>
                                             
-                                              <input type='text' style={{width:'200px'}} placeholder='message' onChange={(e)=>setData(e.target.value)}/>
-                                              <button disabled={disable} type="button"   className={`btn btn-${board===1?m.Color:''} btn-info text-white `}  style={{height:"30px",width:'60px',fontSize:'12px'}}  onClick={()=>sendMessage(m.MacID,m.SocketNumber,data)} >
+                                              <input type='text' style={{width:'200px', padding: '5px', border: '1px solid #ccc', borderRadius: '4px'}} placeholder='message' onChange={(e)=>setData(e.target.value)}/>
+                                              <button disabled={disable} type="button"   className={`btn btn-${board===1?m.Color:''} btn-info text-white `}  style={{height:"30px",width:'60px',fontSize:'12px', borderRadius: '4px', border: 'none', marginLeft: '5px'}}  onClick={()=>sendMessage(m.MacID,m.SocketNumber,data)} >
                                               SEND
                                           </button>
                                             </div>
@@ -422,10 +434,10 @@ const handleChange = () => {
                                           
                                               <h6 style={{fontSize:"12px"}}>IMG</h6>
                                              <div >
-                                              <input type='text' style={{width:'100px'}} placeholder='ImageNumber' onChange={(e)=>setIMG(e.target.value)}/>
-                                             
+                                              <input type='text' style={{width:'100px', padding: '5px', border: '1px solid #ccc', borderRadius: '4px'}} placeholder='ImageNumber' onChange={(e)=>setIMG(e.target.value)}/>
+
                                               </div>
-                                              <button disabled={disable} type="button" className="btn btn-info text-white " style={{height:"30px",width:'60px',fontSize:'12px'}}  onClick={()=>sendIMG(m.MacID,IMG,m.SocketNumber,sessionStorage.getItem("name"))} >
+                                              <button disabled={disable} type="button" className="btn btn-info text-white " style={{height:"30px",width:'60px',fontSize:'12px', borderRadius: '4px', border: 'none', marginLeft: '5px'}}  onClick={()=>sendIMG(m.MacID,IMG,m.SocketNumber,sessionStorage.getItem("name"))} >
                                               SEND
                                           </button>
                                             
@@ -468,10 +480,10 @@ const handleChange = () => {
                                           
                                               <h6 style={{fontSize:"12px"}}>FOTA</h6>
                                              <div >
-                                              <input type='text' style={{width:'200px'}} placeholder='Url' onChange={(e)=>setUrl(e.target.value)}/>
-                                             
+                                              <input type='text' style={{width:'200px', padding: '5px', border: '1px solid #ccc', borderRadius: '4px'}} placeholder='Url' onChange={(e)=>setUrl(e.target.value)}/>
+
                                               </div>
-                                              <button disabled={disable} type="button" className="btn btn-info text-white " style={{height:"30px",width:'60px',fontSize:'12px'}}  onClick={()=>sendFotaUrl(m.MacID,url,m.SocketNumber,sessionStorage.getItem("name"))} >
+                                              <button disabled={disable} type="button" className="btn btn-info text-white " style={{height:"30px",width:'60px',fontSize:'12px', borderRadius: '4px', border: 'none', marginLeft: '5px'}}  onClick={()=>sendFotaUrl(m.MacID,url,m.SocketNumber,sessionStorage.getItem("name"))} >
                                               SEND
                                           </button>
                                             
@@ -514,10 +526,10 @@ const handleChange = () => {
                                     <div  style={{display:'flex',alignItems:'center',gap:'5px'}}>
                                           <h5>HBT</h5>
                                              <div>
-                                              <input type='number' min={30} max={300} style={{width:'100px'}} placeholder='value' onChange={(e)=>setHBTvalue(e.target.value)}/>
-                                            
+                                              <input type='number' min={30} max={300} style={{width:'100px', padding: '5px', border: '1px solid #ccc', borderRadius: '4px'}} placeholder='value' onChange={(e)=>setHBTvalue(e.target.value)}/>
+
                                               </div>
-                                              <button disabled={disable} type="button" className="btn btn-info text-white " style={{height:"30px",width:'60px',fontSize:'12px'}}  onClick={()=>sendHBT(m.MacID,HBTvalue,m.SocketNumber,sessionStorage.getItem("name"))} >
+                                              <button disabled={disable} type="button" className="btn btn-info text-white " style={{height:"30px",width:'60px',fontSize:'12px', borderRadius: '4px', border: 'none', marginLeft: '5px'}}  onClick={()=>sendHBT(m.MacID,HBTvalue,m.SocketNumber,sessionStorage.getItem("name"))} >
                                               SEND
                                           </button>
                                             

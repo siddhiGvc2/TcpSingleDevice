@@ -287,9 +287,9 @@ export default function KwikpayBoards() {
       Boards
       </Typography>
       <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-12">
                         <div className="form-group my-2">
-                            <h6>Board1:</h6>
+                            <h6>Board:</h6>
                             <Select
                                 name="board1"
                                 value={selectedOption1}
@@ -302,42 +302,14 @@ export default function KwikpayBoards() {
                             <div className="invalid-feedback"/>
                         </div>
                     </div>
-                    <div className="col-md-4">
-                        <div className="form-group my-2">
-                            <h6>Board2:</h6>
-                            <Select
-                                name="board2"
-                                value={selectedOption2}
-                                onChange={handleSelectChange2}
-                                options={options2}
-                                isSearchable // Equivalent to isSearchable={true}
-                                placeholder="Select option..."
-                            />
-                            {/* <input type="text" className="form-control" name="machine" /> */}
-                            <div className="invalid-feedback"/>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="form-group my-2">
-                            <h6>Board3:</h6>
-                            <Select
-                                name="board3"
-                                value={selectedOption3}
-                                onChange={handleSelectChange3}
-                                options={options3}
-                                isSearchable // Equivalent to isSearchable={true}
-                                placeholder="Select option..."
-                            />
-                            {/* <input type="text" className="form-control" name="machine" /> */}
-                            <div className="invalid-feedback"/>
-                        </div>
-                    </div>
+                   
+                  
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              {/* <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontWeight: 'bold' }}>
                 {isChecked ? 'TEST MODE ON' : 'TEST MODE OFF'}
-              </span>
-              <Switch
+              </span> */}
+              {/* <Switch
                 onChange={handleChange}
                 checked={isChecked}
                 onColor="#28a745"
@@ -346,8 +318,8 @@ export default function KwikpayBoards() {
                 checkedIcon={false}
                 height={20}
                 width={48}
-              />
-            </div>
+              /> */}
+            {/* </div> */}
 
                {/* {selectedOption1.id>=0? <div className="row">
                                       
@@ -368,7 +340,7 @@ export default function KwikpayBoards() {
               } */}
           
               <div className='row'>
-                 <div className="col-md-4">
+                 <div className="col-md-12">
                   <UserTableRow
                       key={value1.id}
                      
@@ -379,26 +351,8 @@ export default function KwikpayBoards() {
                       handleClick={(event) => handleClick(event, value1.UID)}
                     />
                   </div>
-                  <div className="col-md-4">
-                  <UserTableRow
-                      key={value2.id}
-
-                      testMode={isChecked}
-                      m={value2}
-                      board={2}
-                      handleClick={(event) => handleClick(event, value2.UID)}
-                    />
-                  </div>
-                  <div className="col-md-4">
-                  <UserTableRow
-                      key={value3.id}
-
-                      testMode={isChecked}
-                      m={value3}
-                      board={3}
-                      handleClick={(event) => handleClick(event, value3.UID)}
-                    />
-                  </div>
+                 
+                
 
               </div>
         
