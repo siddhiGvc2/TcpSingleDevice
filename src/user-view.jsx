@@ -254,7 +254,13 @@ export default function KwikpayBoards() {
    
    const handleChange = () => {
     setTestMode();
-   
+    if (isChecked) {
+      // If currently on, turning off, clear test process
+      setIsChecked(false);
+      // Call modeNone for all boards if needed, but since it's per board, handle in useEffect
+    } else {
+      setIsChecked(true);
+    }
   };
   
   // const handleChangePage = (event, newPage) => {
@@ -302,24 +308,26 @@ export default function KwikpayBoards() {
                             <div className="invalid-feedback"/>
                         </div>
                     </div>
-                   
-                  
+
+
               </div>
-              {/* <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ fontWeight: 'bold' }}>
-                {isChecked ? 'TEST MODE ON' : 'TEST MODE OFF'}
-              </span> */}
-              {/* <Switch
-                onChange={handleChange}
-                checked={isChecked}
-                onColor="#28a745"
-                offColor="#dc3545"
-                uncheckedIcon={false}
-                checkedIcon={false}
-                height={20}
-                width={48}
-              /> */}
-            {/* </div> */}
+              {selectedOption1.id >= 0 && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ fontWeight: 'bold' }}>
+                    {isChecked ? 'TEST MODE ON' : 'TEST MODE OFF'}
+                  </span>
+                  <Switch
+                    onChange={handleChange}
+                    checked={isChecked}
+                    onColor="#28a745"
+                    offColor="#dc3545"
+                    uncheckedIcon={false}
+                    checkedIcon={false}
+                    height={20}
+                    width={48}
+                  />
+                </div>
+              )}
 
                {/* {selectedOption1.id>=0? <div className="row">
                                       

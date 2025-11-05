@@ -114,22 +114,46 @@ export default function UserTableRow({
       }
       else if(testMode && board===1 && m.id>=0) {
         setDisable(true);
-     
-          modeTest1(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
-      
+
+          // Send CC command first
+          sendMessage(m.MacID,m.SocketNumber,"*CC#");
+          // sendCC(m.MacID, m.SocketNumber, sessionStorage.getItem("name"));
+          // After 1 second, send V and then TC 7 times with 1s intervals
+          setTimeout(() => {
+             sendMessage(m.MacID,m.SocketNumber,`*V:${Math.floor(1000 + Math.random() * 9000)}:1:1#`
+);
+            // sendV(m.MacID, 1,1,m.socketNumber, sessionStorage.getItem("name"));
+            for (let i = 0; i < 7; i++) {
+              setTimeout(() => {
+                 sendMessage(m.MacID,m.SocketNumber,"*TC?#");
+                 setTimeout(()=>{
+                    // sendTC(m.MacID, m.SocketNumber, sessionStorage.getItem("name"));
+                if(i<6)
+                {
+                  sendMessage(m.MacID,m.SocketNumber,`*V:${Math.floor(1000 + Math.random() * 9000)}:${i+2}:1#`
+);
+                // sendV(m.MacID, i+2,1,m.socketNumber, sessionStorage.getItem("name"));
+                }
+
+                 },2000)
+              
+              }, 3000);
+            }
+          }, 1000);
+
       }
-      else if(testMode && board===2 && m.id>=0)
-        {
-          setDisable(true);
+      // else if(testMode && board===2 && m.id>=0)
+      //   {
+      //     setDisable(true);
      
-          modeTest2(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
-        }
-        else if(testMode && board===3 && m.id>=0)
-          {
-            setDisable(true);
+      //     modeTest2(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
+      //   }
+      //   else if(testMode && board===3 && m.id>=0)
+      //     {
+      //       setDisable(true);
        
-            modeTest3(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
-          }
+      //       modeTest3(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
+      //     }
   },[testMode,m.MacID, m.SocketNumber,m.id,board])
 
 

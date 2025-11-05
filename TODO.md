@@ -1,0 +1,4 @@
+- [x] Uncomment and add the TestMode switch button in src/user-view.jsx after the board select dropdown.
+- [x] Make the switch visible only when a board is selected.
+- [x] When test mode is off, clear the test process immediately.
+- [x] Replace modeTest1 call with logic to send CC command, then after 1 second send V and TC 7 times with 1s intervals.
