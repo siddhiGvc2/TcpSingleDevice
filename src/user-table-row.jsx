@@ -114,32 +114,35 @@ export default function UserTableRow({
       }
       else if(testMode && board===1 && m.id>=0) {
         setDisable(true);
+        modeTest1(m.MacID,m.SocketNumber,sessionStorage.getItem("name"));
 
-          // Send CC command first
-          sendMessage(m.MacID,m.SocketNumber,"*CC#");
-          // sendCC(m.MacID, m.SocketNumber, sessionStorage.getItem("name"));
-          // After 1 second, send V and then TC 7 times with 1s intervals
-          setTimeout(() => {
-             sendMessage(m.MacID,m.SocketNumber,`*V:${Math.floor(1000 + Math.random() * 9000)}:1:1#`
-);
-            // sendV(m.MacID, 1,1,m.socketNumber, sessionStorage.getItem("name"));
-            for (let i = 0; i < 7; i++) {
-              setTimeout(() => {
-                 sendMessage(m.MacID,m.SocketNumber,"*TC?#");
-                 setTimeout(()=>{
-                    // sendTC(m.MacID, m.SocketNumber, sessionStorage.getItem("name"));
-                if(i<6)
-                {
-                  sendMessage(m.MacID,m.SocketNumber,`*V:${Math.floor(1000 + Math.random() * 9000)}:${i+2}:1#`
-);
-                // sendV(m.MacID, i+2,1,m.socketNumber, sessionStorage.getItem("name"));
-                }
+          // // Send CC command first
+          // sendMessage(m.MacID,m.SocketNumber,"*CC#");
+          // setTimeout(()=>{
+          //     sendMessage(m.MacID,m.SocketNumber,"*TC?#");
+          // },1000)
+          // // sendCC(m.MacID, m.SocketNumber, sessionStorage.getItem("name"));
+          // // After 1 second, send V and then TC 7 times with 1s intervals
+          // setTimeout(() => {
+          //    sendMessage(m.MacID,m.SocketNumber,`*V:${Math.floor(1000 + Math.random() * 9000)}:1:1#`);
+          //   // sendV(m.MacID, 1,1,m.socketNumber, sessionStorage.getItem("name"));
+          //   for (let i = 0; i < 7; i++) {
+          //     setTimeout(async() => {
+          //       await setTimeout(()=>{
+          //           // sendTC(m.MacID, m.SocketNumber, sessionStorage.getItem("name"));
+          //       if(i<6)
+          //       {
+          //         sendMessage(m.MacID,m.SocketNumber,`*V:${Math.floor(1000 + Math.random() * 9000)}:${i+2}:1#`);
+          //       // sendV(m.MacID, i+2,1,m.socketNumber, sessionStorage.getItem("name"));
+          //       }
 
-                 },2000)
+          //        },3000)
+          //        sendMessage(m.MacID,m.SocketNumber,"*TC?#");
+                 
               
-              }, 3000);
-            }
-          }, 1000);
+          //     }, 1000);
+          //   }
+          // }, 1000);
 
       }
       // else if(testMode && board===2 && m.id>=0)
@@ -336,6 +339,12 @@ const handleChange = () => {
       </TableRow >
        <div style={{border:"2px solid #ddd", borderRadius: "8px", overflow: "auto", height: "500px", padding: "15px", backgroundColor: "#f9f9f9", boxShadow: "0 2px 4px rgba(0,0,0,0.1)"}}>
        <div style={{fontSize: '1.25em', fontWeight: 'bold', cursor:'pointer', backgroundColor: '#e3f2fd', padding: '10px', borderRadius: '5px', marginBottom: '10px', color: '#1976d2'}} >  SN:{m.SNoutput} MacID:{m.MacID} Socket:{m.SocketNumber}</div>
+       <div style={{border:"2px solid #ddd", borderRadius: "8px", overflow: "auto", padding: "15px", backgroundColor: "#f9f9f9", boxShadow: "0 2px 4px rgba(0,0,0,0.1)", marginBottom: "10px"}}>
+         <h5>TC Response</h5>
+         <Typography>
+           <p>{m.TCoutput}</p>
+         </Typography>
+       </div>
          <table className="table table-striped" style={{fontSize:'14px', borderCollapse: 'separate', borderSpacing: '0', width: '100%'}}>
 
                             <tbody > 
